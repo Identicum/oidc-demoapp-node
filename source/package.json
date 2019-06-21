@@ -1,0 +1,29 @@
+{
+  "name": "node_openid",
+  "version": "1.0.0",
+  "description": "Example of integration with OpenId Connect",
+  "main": "app.js",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "got": "^9.6.0",
+    "lodash": "^4.17.11",
+    "lru-cache": "^5.1.1",
+    "node-jose": "^1.1.1",
+    "node-uuid": "^1.4.8",
+    "oidc-token-hash": "^3.0.2",
+    "p-any": "^1.1.0",
+    "request": "^2.88.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

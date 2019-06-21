@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Identicum - Demo App</title>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/css/bootstrap.min.css" integrity="sha256-Mp5MUgb8cjkGtTftnq3keEVxsByE6WQlymfB/r46CCU=" crossorigin="anonymous" />
+		<style type="text/css">
+			.navbar {
+				background-color:rgba(0,0,0,0.8);
+				min-height: 65px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="navbar fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" rel="home" href="#" title="Identicum">
+							<img style="max-width:140px; margin-top: -7px;" src="resources/img/logo.png">
+						</a>
+					</div>
+					<div class="navbar-nav">
+						<a class="nav-item" href="logout" style="color:#ffffff">Logout</a>
+					</div>
+				 </div>
+			</div>
+		</header>
+		<div class="container page-content">
+			 {{{body}}}
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".btn-group .btn input").change(function() {
+					$("." + $(this).attr('name')).toggleClass("d-none");
+				});
+			});
+		</script>
+	</body>
+</html>
