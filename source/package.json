@@ -15,6 +15,7 @@
     "lru-cache": "^5.1.1",
     "node-jose": "^1.1.1",
     "node-uuid": "^1.4.8",
+    "openid-client": "^3.2.0",
     "oidc-token-hash": "^3.0.2",
     "p-any": "^1.1.0",
     "request": "^2.88.0",
