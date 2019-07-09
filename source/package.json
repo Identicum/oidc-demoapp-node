@@ -1,8 +1,12 @@
 {
-  "name": "node_openid",
+  "name": "oidc-demoapp-node",
   "version": "1.1.0",
   "private": true,
   "description": "OpenId Connect integration exaample.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Identicum/oidc-demoapp-node.git"
+  },
   "main": "app.js",
   "dependencies": {
     "base64url": "^3.0.1",
@@ -15,7 +19,7 @@
     "lru-cache": "^5.1.1",
     "node-jose": "^1.1.1",
     "node-uuid": "^1.4.8",
-    "openid-client": "^3.2.0",
+    "openid-client": "^2.4.5",
     "oidc-token-hash": "^3.0.2",
     "p-any": "^1.1.0",
     "request": "^2.88.0",
