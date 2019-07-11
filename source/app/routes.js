@@ -52,3 +52,7 @@ app.use('/resources', express.static('public/'));
 
 app.use(express.static('public/'));
 
+// route for handling 404 requests(unavailable routes)
+app.get('*', (req, res) => {
+  res.status(404).redirect(`/error.html?errorMessage=Page not found`);
+});

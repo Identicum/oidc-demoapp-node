@@ -20,10 +20,10 @@ logger.info('IDP logout value set  → '+idp_logout)
 logger.info('IDP timeout value set  → '+timeout)
 
 let getClient = function(){
-    // Return new promise 
+    // Return new promise
     logger.debug('Discovering the client')
     return new Promise(function(resolve, reject) {
-        Issuer.discover(process.env.issuer_uri)  
+        Issuer.discover(process.env.issuer_uri)
         .then(function (issuer) {
             logger.debug('Discover done')
             client = new issuer.Client({
@@ -40,19 +40,6 @@ let getClient = function(){
 }
 
 
-let getIssuer = function(){
-    // Return new promise 
-    return new Promise(function(resolve, reject) {
-        Issuer.discover(process.env.issuer_uri)  
-        .then(function (issuer) {
-            resolve(issuer);
-        }).catch(function(err){
-            reject(err);
-        });
-    });
-}
-
-
 // Send permission authorization to client
 exports.login = function(req, res) {
     getClient().then(function(client){
@@ -62,7 +49,7 @@ exports.login = function(req, res) {
         };
         const session = req.session['checks'];
         const state = session.state;
-        
+
         logger.debug('Send authorization request to client')
         var URL = client.authorizationPost({
             redirect_uri: callback_signin,
@@ -116,21 +103,14 @@ exports.callback = function(req, res) {
             logger.debug('Validation ok, access token received')
             req.session.logged = true;
             userinfoPromise = client.userinfo(tokenSet.access_token);
-            introspectPromise = null;
-            try {
-                introspectPromise = client.introspect(tokenSet.access_token,'bearer');
-            } catch(err) {
-                logger.error(err);
-            };
 
-            logger.debug('Request to user-info and instrospect')
+            logger.debug('Request to user-info')
             // Evenly, it's possible to use .catch
-            Promise.all([userinfoPromise,introspectPromise]).then(values => { 
+            Promise.all([userinfoPromise]).then(values => {
                 logger.debug('Satisfactory request')
                 req.session.token = tokenSet;
                 req.session.claims =  tokenSet.claims;
                 req.session.userinfo = values[0];
-                req.session.introspect = values[1];
 
                 res.redirect(`/welcome`);
             }).catch(function(err) {
@@ -142,9 +122,6 @@ exports.callback = function(req, res) {
                     res.status(500).redirect(`/error.html?errorMessage=${err}`);
                 }
             });
-
-            
-        
         }).catch(function(err){
             logger.debug('Fail in validation the authorization callback')
             logger.error(err)
