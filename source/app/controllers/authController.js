@@ -1,23 +1,23 @@
-var uuid = require('node-uuid');
+const uuidv4 = require('uuid/v4');
 const { Issuer } = require('openid-client');
 const { loggers } = require('winston')
 const logger = loggers.get('logger')
 
 const callback_signin = process.env.app_uri+'/oidc-signin';
 const callback_signout = process.env.app_uri+'/oidc-signout';
-const timeout = parseInt(process.env.timeout) || 5000;
+const timeout_issuer = parseInt(process.env.timeout) || 5000;
 const scope = process.env.scope || 'openid profile refresh_token';
 const acr_values = process.env.acr_values || 'auth_ldap_server';
 const idp_logout = process.env.idp_logout || false;
 
-Issuer.defaultHttpOptions.timeout = timeout;
+Issuer.defaultHttpOptions = {timeout: timeout_issuer};
 
 logger.info('Redirect URI  → '+callback_signin)
 logger.info('Redirect URI Logout  → '+callback_signout)
 logger.info('Scopes values set  → '+scope)
 logger.info('Acr values set  → '+acr_values)
 logger.info('IDP logout value set  → '+idp_logout)
-logger.info('IDP timeout value set  → '+timeout)
+logger.info('IDP timeout value set  → '+timeout_issuer)
 
 let getClient = function(){
     // Return new promise
@@ -45,7 +45,7 @@ exports.login = function(req, res) {
     getClient().then(function(client){
         /* start authentication request */
         req.session['checks'] = {
-            state: uuid.v4(),
+            state: uuidv4(),
         };
         const session = req.session['checks'];
         const state = session.state;
