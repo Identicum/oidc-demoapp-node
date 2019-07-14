@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  oidc-demoapp-node:
+    container_name: oidc-demoapp-node
+    image: oidc-demoapp-node:latest
+    build: ./docker
+    env_file: 
+      - oidc-demoapp-node.env
+    restart: always
+    ports:
+        - "3000:3000"
