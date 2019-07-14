@@ -28,4 +28,4 @@ Or build `identicum/oidc-demoapp-node` from source:
 #### Run the container
 Run the image, binding associated ports, and mounting your custom envronment:
 
-    docker run -p 8080:8080 -v $(pwd)/.env:/usr/src/app/.env:ro identicum/oidc-demoapp-node
+    docker run -p 80:3000 -v $(pwd)/.env:/usr/src/app/.env:ro identicum/oidc-demoapp-node
