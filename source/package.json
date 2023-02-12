@@ -14,7 +14,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^5.3.1",
     "express-session": "^1.15.6",
-    "got": "^11.8.5",
+    "got": "^12.5.3",
     "lodash": "^4.17.21",
     "lru-cache": "^5.1.1",
     "node-jose": "^2.1.1",
